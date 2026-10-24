@@ -1,0 +1,70 @@
+import java.util.Objects;
+
+class Vehicle7 {
+    private final String regNo;
+
+    Vehicle7(String regNo) {
+        this.regNo = regNo;
+    }
+
+    int ratePerHour() {
+        return 0;
+    }
+
+    int calculateFee(int hours) {
+        return hours * ratePerHour();
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle: " + regNo;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Vehicle7)) return false;
+        Vehicle7 other = (Vehicle7) obj;
+        return regNo.equals(other.regNo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(regNo);
+    }
+}
+
+class Bike7 extends Vehicle7 {
+    Bike7(String regNo) {
+        super(regNo);
+    }
+
+    @Override
+    int ratePerHour() {
+        return 10;
+    }
+}
+
+class Car7 extends Vehicle7 {
+    Car7(String regNo) {
+        super(regNo);
+    }
+
+    @Override
+    int ratePerHour() {
+        return 30;
+    }
+}
+
+public class Task7 {
+    public static void main(String[] args) {
+        Vehicle7 bike = new Bike7("TN01A1");
+        Vehicle7 car = new Car7("TN02B2");
+
+        System.out.println(bike);
+        System.out.println("Bike fee: Rs." +
+                bike.calculateFee(2));
+        System.out.println("Car fee: Rs." +
+                car.calculateFee(2));
+        System.out.println(car.equals(new Car7("TN02B2")));
+    }
+}
