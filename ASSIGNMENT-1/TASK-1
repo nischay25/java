@@ -1,1 +1,44 @@
 
+abstract class Vehicle {
+    String registrationNumber;
+
+    Vehicle(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
+    }
+
+    abstract int getParkingRate();
+}
+
+class TwoWheeler extends Vehicle {
+    TwoWheeler(String registrationNumber) {
+        super(registrationNumber);
+    }
+
+    int getParkingRate() {
+        return 10;
+    }
+}
+
+class Car extends Vehicle {
+    Car(String registrationNumber) {
+        super(registrationNumber);
+    }
+
+    int getParkingRate() {
+        return 30;
+    }
+}
+
+public class Task1 {
+    public static void main(String[] args) {
+        Vehicle v1 = new TwoWheeler("TN01AB1111");
+        Vehicle v2 = new Car("TN02CD2222");
+
+        System.out.println("Vehicle: " + v1.registrationNumber);
+        System.out.println("Rate: Rs." + v1.getParkingRate());
+
+        System.out.println("Vehicle: " + v2.registrationNumber);
+        System.out.println("Rate: Rs." + v2.getParkingRate());
+    }
+}
+
