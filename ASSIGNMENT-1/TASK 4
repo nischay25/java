@@ -1,0 +1,32 @@
+class Ticket {
+    private static long nextNumber = 1000;
+    private final long ticketNumber;
+    private final String vehicleNumber;
+
+    Ticket(String vehicleNumber) {
+        this.vehicleNumber = vehicleNumber;
+        ticketNumber = ++nextNumber;
+    }
+
+    void display() {
+        System.out.println(ticketNumber + " - " + vehicleNumber);
+    }
+
+    static void showCounter() {
+        System.out.println("Last ticket number: " + nextNumber);
+    }
+}
+
+public class Task5 {
+    public static void main(String[] args) {
+        Ticket t1 = new Ticket("TN01AB1111");
+        Ticket t2 = new Ticket("TN02CD2222");
+
+        t1.display();
+        t2.display();
+        Ticket.showCounter();
+
+        t1 = null;
+        System.out.println("First ticket reference released");
+    }
+}
