@@ -1,0 +1,67 @@
+
+interface Chargeable9 {
+    double chargingFee(int kWh);
+
+    default void showChargingInfo() {
+        System.out.println("Vehicle supports charging");
+    }
+}
+
+abstract class Vehicle9 {
+    private final String regNo;
+
+    Vehicle9(String regNo) {
+        this.regNo = regNo;
+    }
+
+    String getRegNo() {
+        return regNo;
+    }
+
+    abstract double calculateFee(int hours);
+}
+
+class Bike9 extends Vehicle9 {
+    Bike9(String regNo) {
+        super(regNo);
+    }
+
+    @Override
+    double calculateFee(int hours) {
+        return hours * 10;
+    }
+}
+
+class ElectricCar9 extends Vehicle9 implements Chargeable9 {
+    ElectricCar9(String regNo) {
+        super(regNo);
+    }
+
+    @Override
+    double calculateFee(int hours) {
+        return hours * 30;
+    }
+
+    @Override
+    public double chargingFee(int kWh) {
+        return kWh * 12.0;
+    }
+}
+
+public class Task9 {
+    public static void main(String[] args) {
+        Vehicle9 bike = new Bike9("TN01A1");
+        ElectricCar9 ev = new ElectricCar9("TN03C3");
+
+        System.out.println("Bike fee: Rs." +
+                bike.calculateFee(2));
+
+        System.out.println("EV parking fee: Rs." +
+                ev.calculateFee(2));
+
+        System.out.println("EV charging fee: Rs." +
+                ev.chargingFee(5));
+
+        ev.showChargingInfo();
+    }
+}
