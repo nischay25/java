@@ -1,0 +1,69 @@
+class ParkingSlot10 {
+    private int floor;
+    private int slot;
+    private String vehicleNumber;
+
+    ParkingSlot10(int floor, int slot) {
+        setFloor(floor);
+        setSlot(slot);
+    }
+
+    public void setFloor(int floor) {
+        if (floor < 0)
+            throw new IllegalArgumentException("Invalid floor");
+        this.floor = floor;
+    }
+
+    public void setSlot(int slot) {
+        if (slot < 0)
+            throw new IllegalArgumentException("Invalid slot");
+        this.slot = slot;
+    }
+
+    public void parkVehicle(String vehicleNumber) {
+        if (vehicleNumber == null ||
+                vehicleNumber.trim().isEmpty()) {
+            throw new IllegalArgumentException("Invalid vehicle");
+        }
+
+        if (this.vehicleNumber != null) {
+            System.out.println("Slot already occupied");
+            return;
+        }
+
+        this.vehicleNumber = vehicleNumber;
+    }
+
+    public void releaseVehicle() {
+        vehicleNumber = null;
+    }
+
+    public int getFloor() {
+        return floor;
+    }
+
+    public int getSlot() {
+        return slot;
+    }
+
+    public String getVehicleNumber() {
+        return vehicleNumber;
+    }
+}
+
+public class Task10 {
+    public static void main(String[] args) {
+        ParkingSlot10 slot = new ParkingSlot10(0, 1);
+
+        slot.parkVehicle("TN01AB1111");
+
+        System.out.println("Floor: " + slot.getFloor());
+        System.out.println("Slot: " + slot.getSlot());
+        System.out.println("Vehicle: " +
+                slot.getVehicleNumber());
+
+        slot.releaseVehicle();
+        System.out.println("After exit: " +
+                slot.getVehicleNumber());
+    }
+}
