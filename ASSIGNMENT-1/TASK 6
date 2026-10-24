@@ -1,0 +1,38 @@
+class Vehicle {
+    protected String registrationNumber;
+
+    Vehicle(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
+        System.out.println("Vehicle constructor");
+    }
+}
+
+class Car extends Vehicle {
+    Car(String registrationNumber) {
+        super(registrationNumber);
+        System.out.println("Car constructor");
+    }
+}
+
+class ElectricCar extends Car {
+    ElectricCar(String registrationNumber) {
+        super(registrationNumber);
+        System.out.println("ElectricCar constructor");
+    }
+}
+
+class TwoWheeler extends Vehicle {
+    TwoWheeler(String registrationNumber) {
+        super(registrationNumber);
+    }
+}
+
+public class Task6 {
+    public static void main(String[] args) {
+        ElectricCar ev = new ElectricCar("TN03C3");
+        TwoWheeler bike = new TwoWheeler("TN01A1");
+
+        System.out.println("EV: " + ev.registrationNumber);
+        System.out.println("Bike: " + bike.registrationNumber);
+    }
+}
